@@ -6,9 +6,11 @@ import Home from './Home.jsx'
 import EventDemo from './EventDemo.jsx'
 import Counter from './Counter.jsx'
 import Sumdemo from './Sumdemo.jsx'
+import Sum2 from './Sum2.jsx'
+import Sum3 from './Sum3.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-   <App/>
+    <Sum2 />
   </StrictMode>,
 )
