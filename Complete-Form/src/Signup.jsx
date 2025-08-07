@@ -1,4 +1,7 @@
 import React from "react";
+import { Route, Router } from "react-router-dom";
+import Dashboard from "./Dashboard";
+
 function Signup() {
     const [name, setName] = React.useState("");
     const [email, setEmail] = React.useState("");
@@ -10,6 +13,12 @@ function Signup() {
         localStorage.setItem('mobile', mobile);
         localStorage.setItem('email', email);
         localStorage.setItem('password', password);
+
+        <Router>
+            <Routes>
+                <Route path="/dashboard" element={<Dashboard />} />
+            </Routes>
+        </Router>
     }
 
     return (
