@@ -206,18 +206,54 @@ class RegisterForm extends Component {
       agree,
     } = this.state.form;
 
-    // Validations
-    if (
-      name === '' ||
-      email === '' ||
-      mobile === '' ||
-      semester === '' ||
-      gender === '' ||
-      message === '' ||
-      password === '' ||
-      confirmPassword === ''
-    ) {
-      this.setState({ error: 'Please fill all fields' });
+    if (name.trim() === '') {
+      this.setState({ error: 'Name is required' });
+      return;
+    }
+
+    if (email.trim() === '') {
+      this.setState({ error: 'Email is required' });
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      this.setState({ error: 'Please enter a valid email address' });
+      return;
+    }
+
+    if (mobile.trim() === '') {
+      this.setState({ error: 'Mobile number is required' });
+      return;
+    }
+
+    if (!/^\d{10}$/.test(mobile)) {
+      this.setState({ error: 'Mobile number must be exactly 10 digits' });
+      return;
+    }
+
+    if (semester === '') {
+      this.setState({ error: 'Please select a semester' });
+      return;
+    }
+
+    if (gender === '') {
+      this.setState({ error: 'Please select a gender' });
+      return;
+    }
+
+    if (message.trim() === '') {
+      this.setState({ error: 'Message is required' });
+      return;
+    }
+
+    if (password === '') {
+      this.setState({ error: 'Password is required' });
+      return;
+    }
+
+    if (confirmPassword === '') {
+      this.setState({ error: 'Confirm Password is required' });
       return;
     }
 
@@ -226,27 +262,15 @@ class RegisterForm extends Component {
       return;
     }
 
-    if (!email.includes('@') || !email.includes('.')) {
-      this.setState({ error: 'Invalid email format' });
-      return;
-    }
-
-    if (mobile.length !== 10 || isNaN(mobile)) {
-      this.setState({ error: 'Mobile number must be 10 digits' });
-      return;
-    }
-
     if (!agree) {
       this.setState({ error: 'Please agree to Terms & Conditions' });
       return;
     }
 
-    // Save to localStorage
     localStorage.setItem('registrationData', JSON.stringify(this.state.form));
     this.setState({ error: '' });
     alert('Registration Successful!');
 
-    // Reset form
     this.setState({
       form: {
         name: '',
@@ -266,7 +290,11 @@ class RegisterForm extends Component {
     const { form, error } = this.state;
 
     return (
-      <div className="container">
+      <div className="container"
+        style={{
+          width: "300px",
+          margin: "0 auto"
+        }}>
         <h2>Register</h2>
         <form onSubmit={this.handleSubmit}>
           <label>
@@ -387,6 +415,6 @@ class RegisterForm extends Component {
       </div>
     );
   }
-                            }
+}
 
-                            export default RegisterForm;
+export default RegisterForm;
