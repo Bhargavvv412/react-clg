@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Router } from "react-router-dom";
+import { Route, Router, Routes } from "react-router-dom";
 import Dashboard from "./Dashboard";
 
 function Signup() {
@@ -22,7 +22,6 @@ function Signup() {
     }
 
     return (
-
         <>
             <h1>Sign Up</h1>
             name: <input
